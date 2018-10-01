@@ -2,19 +2,25 @@ package t.angelicafabila.thecornellianapp;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 //import android.util.Log;
 import android.view.View;
-//import android.widget.AdapterView;
-//import android.widget.ArrayAdapter;
 import android.widget.Button;
-//import android.widget.Spinner;
 //import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
 
 public class Main extends AppCompatActivity
 {
+    TextView itemTitleBox;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -25,13 +31,18 @@ public class Main extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.actionbar);
         setSupportActionBar(toolbar);
 
-        // Spinner Widget/Dropdown
-//        Spinner menuSpinner = findViewById(R.id.spinner_main);
-//
-//        ArrayAdapter<String> myAdapter = new ArrayAdapter<>(Main.this,
-//                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.items));
-//        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        menuSpinner.setAdapter(myAdapter);
+        ImageButton feedRefreshButton = (ImageButton) findViewById(R.id.feedRefresh);
+        feedRefreshButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                new getNews().execute();
+
+            }
+        });
+
+        itemTitleBox = (TextView) findViewById(R.id.itemTitle);
 
         configureMainButton();
         configureAboutUsButton();
@@ -89,5 +100,35 @@ public class Main extends AppCompatActivity
                             Uri.parse("http://cornellcollege.advantage-preservation.com/")));
             }
         });
+    }
+
+    public class getNews extends AsyncTask<Void, Void, Void>
+    {
+        String title;
+
+        @Override
+        protected Void doInBackground(Void... voids)
+        {
+            try
+            {
+                Document url = Jsoup.connect("https://blogs.cornellcollege.edu/cornellian/").get();
+
+                title = url.text();
+
+
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid)
+        {
+            super.onPostExecute(aVoid);
+            itemTitleBox.setText(title);
+
+        }
     }
 }

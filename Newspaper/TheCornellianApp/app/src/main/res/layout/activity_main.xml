@@ -85,36 +85,64 @@
     <LinearLayout
         android:id="@+id/contentLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="318dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="213dp"
+        android:layout_marginTop="249dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/itemTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/titleBoxText" />
 
         <TextView
             android:id="@+id/itemCreator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/authorBoxText" />
 
         <TextView
             android:id="@+id/itemPubDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/dateBoxText" />
 
         <TextView
             android:id="@+id/itemContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/contextBoxText" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/feedRefreshText"
+        android:layout_width="147dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="199dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginRight="51dp"
+        android:layout_toEndOf="@+id/feedRefresh"
+        android:layout_toRightOf="@+id/feedRefresh"
+        android:text="@string/feedRefreshText" />
+
+    <ImageButton
+        android:id="@+id/feedRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="113dp"
+        android:layout_marginLeft="113dp"
+        android:layout_marginTop="186dp"
+        app:srcCompat="@android:drawable/ic_menu_rotate" />
 
 </RelativeLayout>
