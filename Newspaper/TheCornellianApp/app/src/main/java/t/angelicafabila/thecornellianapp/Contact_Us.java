@@ -137,4 +137,11 @@ public class Contact_Us extends AppCompatActivity {
                 Uri.parse("https://www.google.com/")); //TODO
         startActivity(twitterIntent);
     }
+
+    public void contactForm(View view){
+        Intent contactFormIntent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLScxB-v9nO_9gCUrB0t9GMeat3g0KCA2ZTE7S1zLeHl5je6WCQ/viewform?usp=sf_link"));
+        startActivity(contactFormIntent);
+    }
+
 }
